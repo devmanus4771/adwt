@@ -1,0 +1,102 @@
+Q1) Design an HTML form to take the information of a customer for booking a
+travel plan consisting of fields such as name, address, contact no., gender,
+preferred season(Checkboxes), location type(to be selected from a list) etc.
+You should provide button to submit as well as reset the form contents
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Plan Booking Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button[type="reset"] {
+      background-color: #f44336;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Travel Plan Booking Form</h2>
+
+  <form action="#" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="address">Address:</label>
+    <textarea id="address" name="address" rows="4" required></textarea>
+
+    <label for="contact">Contact Number:</label>
+    <input type="tel" id="contact" name="contact" pattern="[0-9]{10}" required placeholder="e.g., 1234567890">
+
+    <label>Gender:</label>
+    <input type="radio" id="male" name="gender" value="male" required>
+    <label for="male">Male</label>
+    <input type="radio" id="female" name="gender" value="female" required>
+    <label for="female">Female</label>
+    <input type="radio" id="other" name="gender" value="other" required>
+    <label for="other">Other</label>
+
+    <label for="preferredSeason">Preferred Season:</label>
+    <input type="checkbox" id="spring" name="season" value="spring">
+    <label for="spring">Spring</label>
+    <input type="checkbox" id="summer" name="season" value="summer">
+    <label for="summer">Summer</label>
+    <input type="checkbox" id="autumn" name="season" value="autumn">
+    <label for="autumn">Autumn</label>
+    <input type="checkbox" id="winter" name="season" value="winter">
+    <label for="winter">Winter</label>
+
+    <label for="locationType">Location Type:</label>
+    <select id="locationType" name="locationType">
+      <option value="beach">Beach</option>
+      <option value="mountains">Mountains</option>
+      <option value="city">City</option>
+      <option value="countryside">Countryside</option>
+    </select>
+
+    <button type="submit">Submit</button>
+    <button type="reset">Reset</button>
+  </form>
+
+</body>
+</html>
+
+
+Q2) 
+
+(Student)-[:APPLIES_FOR {year: "2020-2021"}]->(Scholarship)
+(Student)-[:RECOMMENDS]->(Student)
+
+

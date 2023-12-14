@@ -1,0 +1,138 @@
+Q1)   Create a useful web with the following information and structure using
+HTML5 tags like:<header> , <footer>, <nav>, <aside>, <section>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Web Page Title</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+
+    nav {
+      background-color: #f2f2f2;
+      padding: 10px;
+    }
+
+    section {
+      margin: 20px;
+      padding: 10px;
+    }
+
+    aside {
+      float: right;
+      width: 30%;
+      padding: 10px;
+      background-color: #f2f2f2;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Your Website</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section>
+    <h2>Main Content Section</h2>
+    <p>This is the main content of your web page.</p>
+    <!-- Add more content here -->
+  </section>
+
+  <aside>
+    <h2>Additional Information</h2>
+    <p>This is some additional information or links.</p>
+    <!-- Add more content here -->
+  </aside>
+
+  <footer>
+    <p>&copy; 2023 Your Website. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
+
+
+
+Q2) 
+
+
+// Competitions Collection
+[
+  {
+    "_id": ObjectId("1"),
+    "name": "Programming Competition",
+    "category": "Programming",
+    "participants": [
+      { "student_id": ObjectId("101"), "class": "FY", "position": 1 },
+      // ... additional participant details
+    ]
+  },
+  // ... 9 more documents
+]
+
+// Students Collection
+[
+  { "_id": ObjectId("101"), "name": "John Doe", "class": "FY" },
+  // ... 9 more documents
+]
+
+
+> db.competitions.aggregate([
+  {
+    $project: {
+      "_id": 1,
+      "name": 1,
+      "averageParticipants": { $avg: "$participants.position" }
+    }
+  }
+])
+
+
+> db.competitions.findOne({ "category": "Programming" }).participants.length
+
+> db.competitions.aggregate([
+  {
+    $project: {
+      "_id": 1,
+      "name": 1,
+      "winners": { $slice: ["$participants.student_id", 3] }
+    }
+  }
+])
+
+> db.competitions.findOne({ "name": "E-Rangoli" }).participants
+
+//or answer
+a)db.document.find().pretty()
+b)db.document.find({compition:"programming"})
+c)db.document.find().sort({winner:+1})
+d)db.document.find({compition:"rangoli"})

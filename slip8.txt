@@ -1,0 +1,104 @@
+Q1)  Create a button with different style (Secondary, Primary, Success, Error, Info,
+Warning, Danger) using BootStrap
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <title>Bootstrap Buttons</title>
+</head>
+<body>
+
+<div class="container mt-4">
+
+  <h2>Bootstrap Buttons</h2>
+
+  <button type="button" class="btn btn-secondary mr-2">Secondary</button>
+  <button type="button" class="btn btn-primary mr-2">Primary</button>
+  <button type="button" class="btn btn-success mr-2">Success</button>
+  <button type="button" class="btn btn-danger mr-2">Danger</button>
+  <button type="button" class="btn btn-info mr-2">Info</button>
+  <button type="button" class="btn btn-warning mr-2">Warning</button>
+  <button type="button" class="btn btn-danger">Danger</button>
+
+</div>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+
+
+Q2) 
+
+
+// Items Collection
+[
+  {
+    "_id": ObjectId("1"),
+    "name": "Planner",
+    "tags": ["Office", "Stationery"],
+    "status": "A",
+    "height": 12.0
+  },
+  // ... 4 more documents
+]
+
+// Warehouses Collection
+[
+  {
+    "_id": ObjectId("101"),
+    "name": "Main Warehouse",
+    "items": [
+      {
+        "item_id": ObjectId("1"),
+        "quantity": 400
+      },
+      // ... additional item details
+    ]
+  },
+  // ... 4 more documents
+]
+
+
+> db.warehouses.aggregate([
+  { $unwind: "$items" },
+  { $match: { "items.quantity": { $gt: 300 } } },
+  { $lookup: { from: "items", localField: "items.item_id", foreignField: "_id", as: "item" } },
+  { $unwind: "$item" },
+  { $replaceRoot: { newRoot: "$item" } }
+])
+
+
+> db.items.find({ "tags": { $exists: true, $size: { $lt: 5 } } })
+
+> db.items.find({
+  $or: [
+    { "status": "B" },
+    { $and: [{ "quantity": { $lt: 50 } }, { "height": { $gt: 8 } }] }
+  ]
+})
+
+> db.warehouses.aggregate([
+  { $unwind: "$items" },
+  { $match: { "items.quantity": { $lt: 20 } } },
+  { $lookup: { from: "items", localField: "items.item_id", foreignField: "_id", as: "item" } },
+  { $unwind: "$item" },
+  { $match: { "item.name": "Planner" } }
+])
+
+//or answer
+ db.item.insert([{ item:"bag",warehouses:"puma",Qyt:301,status:"B",tags:["food","cloth","school"] ,wloc:"nashik",height:6,weight:7}]);
+
+q1. db.item.find({Qyt:{$gt:300}})
+q2. db.item.find({tags:{$size:1}})
+q3.db.item.find({status:"A",Qyt:{$lt:500},height:{$gt:7}});
+q4. db.item.find({item:"KITKAT",Qyt:{$lt:20}})
+

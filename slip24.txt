@@ -1,0 +1,35 @@
+Q1)  Create an html page named as “calendar.html”.Use necessary input types and get following output
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar Input Types</title>
+</head>
+<body>
+    <h1>Calender</h1>
+    <h2>Date:</h2>
+    <input type="date" name="dateInput" id="dateInput" required><br>
+
+    <h2>Datetime:</h2>
+    <input type="datetime" name="datetimeInput" id="datetimeInput" required><br>
+
+    <h2>Datetimelocal:</h2>
+    <input type="datetime-local" name="datetimelocalInput" id="datetimelocalInput" required><br>
+
+    <h2>Month:</h2>
+    <input type="month" name="monthInput" id="monthInput" required><br>
+
+    <h2>Time:</h2>
+    <input type="time" name="timeInput" id="timeInput" required><br>
+
+    <h2>Week:</h2>
+    <input type="week" name="weekInput" id="weekInput" required><br>
+
+    <br>
+    <input type="submit" value="Submit">
+
+</body>
+</html>

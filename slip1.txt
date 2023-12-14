@@ -1,0 +1,129 @@
+Q1) Write the HTML5 code for generating the form as shown below. Apply the
+internal CSS to the following form to change the font size of the heading to
+6pt and change the color to red and also change the background color to
+yellow.
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled Project Management Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f8f8f8;
+        }
+
+        form {
+            width: 400px;
+            margin: auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        .priority-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .priority-group label {
+            margin-top: 0;
+        }
+
+        
+    </style>
+</head>
+<body>
+
+    <h1>Project Management Form</h1>
+
+    <form id="projectForm">
+        <label for="projectName">Project Name:</label>
+        <input type="text" id="projectName" name="projectName" required>
+
+        <label for="assignedTo">Assigned To:</label>
+        <input type="text" id="assignedTo" name="assignedTo" required>
+
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" name="startDate" required>
+
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" name="endDate" required>
+
+        <label>Priority:</label>
+        <div class="priority-group">
+            <label><input type="radio" name="priority" value="High"> High</label>
+            <label><input type="radio" name="priority" value="Average"> Average</label>
+            <label><input type="radio" name="priority" value="Low"> Low</label>
+        </div>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" required></textarea>
+
+        <button type="submit">Submit</button>
+        <button type="reset">Clear</button>
+    </form>
+
+    
+
+</body>
+</html>
+
+
+Q2) Answer the following Queries
+a. Display area wise property details.
+[3]
+b. Display property owned by 'Mr.Patil' having minimum rate [3]
+c. Give the details of owner whose property is at “Nashik”.
+[4]
+d. Display area of property whose rate is less than 100000.
+
+
+// Properties Collection
+[
+  {
+    "_id": ObjectId("1"),
+    "name": "Luxury Apartment",
+    "area": "Downtown",
+    "rate": 150000,
+    "owner": {
+      "owner_id": ObjectId("101"),
+      "name": "Mr. Patil"
+    }
+  },
+  // ... 4 more documents
+]
+
+
+> db.properties.find({}, {"name": 1, "area": 1, "rate": 1})
+> db.properties.find({"owner.name": "Mr. Patil"}).sort({"rate": 1}).limit(1)
+> db.properties.find({"area": "Nashik"}, {"owner": 1})
+> db.properties.find({"rate": {"$lt": 100000}}, {"area": 1})
+ 
+// or answer 
+a)db.property.find({rate:{$lt:100000}})
+b)db.property.find().sort({area:-1})
+c)db.property.find({area:"nashik"})
+d)db.property.find({name:"Mr.patil"})
+

@@ -1,0 +1,148 @@
+Q1)  Design an appropriate HTML form for customer registration visiting a
+departmental store. Form should consist of fields such as name, contact no,
+gender, preferred days of purchasing, favorite item (to be selected from a
+list of items), suggestions etc. You should provide button to submit as well
+as reset the form contents.
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button[type="reset"] {
+      background-color: #f44336;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Customer Registration Form</h2>
+
+  <form action="#" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="contact">Contact Number:</label>
+    <input type="tel" id="contact" name="contact" pattern="[0-9]{10}" required placeholder="e.g., 1234567890">
+
+    <label>Gender:</label>
+    <input type="radio" id="male" name="gender" value="male" required>
+    <label for="male">Male</label>
+    <input type="radio" id="female" name="gender" value="female" required>
+    <label for="female">Female</label>
+    <input type="radio" id="other" name="gender" value="other" required>
+    <label for="other">Other</label>
+
+    <label for="preferredDays">Preferred Days of Purchasing:</label>
+    <input type="text" id="preferredDays" name="preferredDays">
+
+    <label for="favoriteItem">Favorite Item:</label>
+    <select id="favoriteItem" name="favoriteItem">
+      <option value="groceries">Groceries</option>
+      <option value="clothing">Clothing</option>
+      <option value="electronics">Electronics</option>
+      <option value="household">Household Items</option>
+    </select>
+
+    <label for="suggestions">Suggestions:</label>
+    <textarea id="suggestions" name="suggestions" rows="4"></textarea>
+
+    <button type="submit">Submit</button>
+    <button type="reset">Reset</button>
+  </form>
+
+</body>
+</html>
+
+
+Q2) 
+
+
+// Movies Collection
+[
+  {
+    "_id": ObjectId("1"),
+    "title": "Inception",
+    "budget": 160000000,
+    "producers": [
+      { "producer_id": ObjectId("101"), "year": 2010 },
+      // ... additional producer details
+    ],
+    "actors": [
+      { "actor_id": ObjectId("201"), "name": "Leonardo DiCaprio", "role": "Cobb" },
+      { "actor_id": ObjectId("202"), "name": "Joseph Gordon-Levitt", "role": "Arthur" },
+      // ... additional actor details
+    ]
+  },
+  // ... 4 more documents
+]
+
+// Producers Collection
+[
+  { "_id": ObjectId("101"), "name": "Christopher Nolan" },
+  // ... 4 more documents
+]
+
+// Actors Collection
+[
+  { "_id": ObjectId("201"), "name": "Leonardo DiCaprio" },
+  // ... 4 more documents
+]
+
+
+> db.movies.find().sort({ "budget": -1 }).limit(1, { "title": 1, "_id": 0 })
+
+> db.producers.aggregate([
+  { $lookup: { from: "movies", localField: "_id", foreignField: "producers.producer_id", as: "movies" } },
+  { $unwind: "$movies" },
+  { $group: { _id: { producer_id: "$_id", year: "$movies.producers.year" }, count: { $sum: 1 } } },
+  { $match: { count: { $gt: 1 } } }
+])
+
+
+> db.actors.find({
+  "_id": { $in: db.movies.find({ "actors.name": "Akshay" }, { "actors.actor_id": 1, "_id": 0 }).toArray()[0].actors.map(a => a.actor_id) }
+})
+
+> db.movies.find({ "producers.1": { $exists: true } }, { "title": 1, "_id": 0 })
+
+//or answer
+a) db.movie.find().sort({budget:-1}).limit(1)
+b) db.movie.find({producer:"prasad"})
+c) db.movie.find({actor:"akshay_kumar"})
+d) db.movie.find({producer:{$size:2}})
+

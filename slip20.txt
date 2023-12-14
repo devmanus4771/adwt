@@ -1,0 +1,69 @@
+Q1)  Create a web page , show a button with a text “start download” , when click in 10
+start download a progress bar must be initialized with value 0 then increase by
+5 in each second then at the end of downloading process alert the message
+“Download completed”
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download Progress</title>
+  <style>
+    #progress-bar {
+      width: 100%;
+      height: 30px;
+      background-color: #eee;
+      margin-top: 20px;
+      position: relative;
+    }
+
+    #progress-bar-inner {
+      height: 100%;
+      background-color: #4caf50;
+      width: 0;
+      transition: width 0.3s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+
+  <button onclick="startDownload()">Start Download</button>
+  <div id="progress-bar">
+    <div id="progress-bar-inner"></div>
+  </div>
+
+  <script>
+    function startDownload() {
+      var progressBar = document.getElementById("progress-bar-inner");
+
+      // Initialize progress bar
+      progressBar.style.width = "0";
+
+      // Set interval to increase progress
+      var interval = setInterval(function() {
+        var currentWidth = parseInt(progressBar.style.width, 10);
+        
+        // Increase progress by 5
+        progressBar.style.width = (currentWidth + 5) + "%";
+
+        // Stop when progress reaches 100%
+        if (currentWidth >= 100) {
+          clearInterval(interval);
+          downloadCompleted();
+        }
+      }, 1000);
+    }
+
+    function downloadCompleted() {
+      alert("Download completed!");
+    }
+  </script>
+
+</body>
+</html>
+
+
+
+Q2) 

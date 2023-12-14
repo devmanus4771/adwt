@@ -1,0 +1,97 @@
+Q1)   Write a bootstrap program for the following
+10
+“The .table class adds basic styling (light padding and only horizontal
+dividers) to a table” The table can have the first name, last name, and email
+id as columns
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <title>Bootstrap Table Example</title>
+</head>
+<body>
+
+<div class="container mt-3">
+  <h2>Bootstrap Table Example</h2>
+  <p>The .table class adds basic styling to a table.</p>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>John</td>
+        <td>Doe</td>
+        <td>john.doe@example.com</td>
+      </tr>
+      <!-- Add more rows with data as needed -->
+    </tbody>
+  </table>
+</div>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+
+
+Q2) 
+
+
+// Hospitals Collection
+{
+  "_id": ObjectId("hospital_id"),
+  "name": "Hospital Name",
+  "city": "City Name",
+  "specializations": ["Pediatric", "Gynaec", "Orthopedic"],
+  "rating": 4.5
+}
+
+// Reviews Collection
+{
+  "_id": ObjectId("review_id"),
+  "hospital_id": ObjectId("hospital_id"),
+  "reviewer": "Person Name",
+  "recommendation": true,
+  "rating": 5
+}
+
+// Doctors Collection
+{
+  "_id": ObjectId("doctor_id"),
+  "name": "Dr. Doctor Name",
+  "hospitals": [ObjectId("hospital_id1"), ObjectId("hospital_id2")]
+}
+
+
+> // Assuming you want hospitals with "Orthopedic" specialization
+db.hospitals.find({"specializations": "Orthopedic"}, {"name": 1})
+> // Assuming you want hospitals in "Nashik" city
+db.hospitals.find({"city": "Nashik"}, {"name": 1})
+>// Assuming Dr. Deshmukh's doctor_id is ObjectId("doctor_id")
+db.hospitals.find({"_id": {"$in": db.doctors.find({"_id": ObjectId("doctor_id")}).next().hospitals}}, {"name": 1})
+
+
+>db.hospitals.find({"rating": {"$gte": 4}}, {"name": 1})
+
+//or answer
+
+a)db.hos.find({spe:"aurthopedic"},{hos_name:1})
+b)db.hos.find({city:"pune"})
+c)db.hos.find({docname:"dr.deshmukh"},{visit:1})
+d)db.hosfind({rating:{$lt}})
+

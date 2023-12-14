@@ -1,0 +1,113 @@
+Q1)  Write the HTML5 code for generating the form as shown below. Apply the
+internal CSS to the following form to set the font size, font color, heading ,
+background color etc.
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled Form</title>
+    <style>
+        
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;s
+        }
+
+        
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-size: 14px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+       
+    </style>
+</head>
+<body>
+
+    <form>
+        <h2>Styled Form</h2>
+
+        <label for="name">Enter your name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="age">Enter your age:</label>
+        <input type="number" id="age" name="age" required>
+
+        <label for="address">Enter your address:</label>
+        <input type="text" id="address" name="address" required>
+
+        <label>Sex:</label>
+        <div class="radio-group">
+            <input type="radio" id="male" name="sex" value="male" required>
+            <label for="male">Male</label>
+
+            <input type="radio" id="female" name="sex" value="female" required>
+            <label for="female">Female</label>
+        </div>
+
+        <label for="nationality">Nationality:</label>
+        <select id="nationality" name="nationality" required>
+            <option value="us">US</option>
+            <option value="uk">UK</option>
+            <option value="ca">Canada</option>
+            <!-- Add more options as needed -->
+        </select>
+
+        <label>Language known:</label>
+        <input type="checkbox" id="c" name="language" value="c">
+        <label for="c">C</label>
+
+        <input type="checkbox" id="cpp" name="language" value="cpp">
+        <label for="cpp">C++</label>
+
+        <input type="checkbox" id="csharp" name="language" value="csharp">
+        <label for="csharp">C#</label>
+
+        <input type="checkbox" id="java" name="language" value="java">
+        <label for="java">Java</label>
+
+        <input type="checkbox" id="python" name="language" value="python">
+        <label for="python">Python</label>
+
+        <label for="password">Enter your password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </form>
+
+</body>
+</html>
+
+

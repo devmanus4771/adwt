@@ -1,0 +1,84 @@
+Q1) Create a web page that shows use of transition properties, transition delay
+and duration effect
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transition Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.5s ease-in-out 0.2s;
+    }
+
+    button:hover {
+      background-color: #2c3e50;
+    }
+  </style>
+</head>
+<body>
+
+  <button>Hover Me</button>
+
+</body>
+</html>
+
+
+Q2)
+
+// Products Collection
+[
+  { "_id": ObjectId("1"), "name": "Laptop", "brand": "HP", "warranty_period": "1 year", "rating": 4.8 },
+  // ... 4 more documents
+]
+
+// Customers Collection
+[
+  {
+    "_id": ObjectId("101"),
+    "name": "John Doe",
+    "city": "New York",
+    "bill_amount": 70000,
+    "purchases": [
+      { "product_id": ObjectId("1"), "purchase_date": ISODate("2023-08-15") },
+      // ... additional purchase details
+    ]
+  },
+  // ... 4 more documents
+]
+
+
+> db.products.find({ "warranty_period": "1 year" }, { "name": 1, "_id": 0 })
+
+> db.customers.find({ "purchases.purchase_date": ISODate("2023-08-15") }, { "name": 1, "_id": 0 })
+
+> db.products.aggregate([
+  { $sort: { "rating": -1 } },
+  { $limit: 1 },
+  { $project: { "_id": 0, "product_name": "$name", "brand": 1 } }
+])
+
+> db.customers.find({ "city": "New York", "bill_amount": { $gt: 50000 } })
+
+//or answer
+
+q1. db.product.find({war_period:"one_year"})
+q2. db.product.find({pur_date:15-08-2023})
+q3. db.product.find().sort({rating:-1}).limit(1)
+q4. db.product.find({city:"nashik",bill_amt:{$gt:50000}})

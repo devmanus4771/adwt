@@ -1,0 +1,78 @@
+Q1)  Create a web page to display image on screen
+Apply the following
+a. Display image in tiles
+b. Rotate image in clockwise and anticlockwise direction
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Display with Rotation</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f1f1f1;
+    }
+
+    #image-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="image-container">
+    <img src="your_image_url.jpg" alt="Image">
+  </div>
+
+  <button onclick="rotateClockwise()">Rotate Clockwise</button>
+  <button onclick="rotateAntiClockwise()">Rotate Anticlockwise</button>
+
+  <script>
+    var rotationAngle = 0;
+
+    function rotateClockwise() {
+      rotationAngle += 90;
+      applyRotation();
+    }
+
+    function rotateAntiClockwise() {
+      rotationAngle -= 90;
+      applyRotation();
+    }
+
+    function applyRotation() {
+      document.getElementById('image-container').style.transform = `rotate(${rotationAngle}deg)`;
+    }
+  </script>
+
+</body>
+</html>
+
+
+Q2)  

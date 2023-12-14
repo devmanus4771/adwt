@@ -1,0 +1,108 @@
+Q1) <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>List of Persons</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      border: 2px solid #dddddd;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 2px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+      border-radius: 10px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+
+<h2>List of Persons</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Srno</th>
+      <th>Person Name</th>
+      <th>Age</th>
+      <th>Country</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>John Doe</td>
+      <td>25</td>
+      <td>USA</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Jane Smith</td>
+      <td>30</td>
+      <td>Canada</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Bob Johnson</td>
+      <td>40</td>
+      <td>UK</td>
+    </tr>
+    <!-- Add more rows as needed -->
+  </tbody>
+</table>
+
+</body>
+</html>
+
+
+Q2) 
+
+
+// Projects Collection
+[
+  {
+    "_id": ObjectId("1"),
+    "name": "Project A",
+    "type": "Development",
+    "duration_months": 5,
+    "employees": [ObjectId("101"), ObjectId("102")]
+  },
+  // ... 4 more documents
+]
+
+// Employees Collection
+[
+  {
+    "_id": ObjectId("101"),
+    "name": "Mr. Patil",
+    "projects": [ObjectId("1"), ObjectId("2")]
+  },
+  // ... 4 more documents
+]
+
+> db.projects.find({"type": "Development"}, {"name": 1})
+> db.projects.find({"duration_months": {"$gt": 3}}, {"name": 1})
+> // Assuming project_id is ObjectId("1")
+db.projects.find({"_id": ObjectId("1")}).next().employees.length
+
+
+>// Assuming employee_id of Mr. Patil is ObjectId("101")
+db.employees.find({"_id": ObjectId("101")}).next().projects
+
+//or answer
+
+a)db.project.find({duration:{$gt:"3_month"}})
+b)db.project.find({project_type:"online"})
+c)db.project.find({project_name:java}).count()
+d)db.project.find({empname:"prasad_dhasade"})
+

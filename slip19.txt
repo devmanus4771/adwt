@@ -1,0 +1,82 @@
+Q1)  Create a web page in which show a button with a text “start download” ,
+when click in start download a progress bar must be initialized with value 0
+then increase by 10 in each second, change the color of progress bar after
+every three seconds..
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download Progress</title>
+  <style>
+    #progress-bar {
+      width: 100%;
+      height: 30px;
+      background-color: #eee;
+      margin-top: 20px;
+      position: relative;
+    }
+
+    #progress-bar-inner {
+      height: 100%;
+      background-color: #4caf50;
+      width: 0;
+      transition: width 0.3s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+
+  <button onclick="startDownload()">Start Download</button>
+  <div id="progress-bar">
+    <div id="progress-bar-inner"></div>
+  </div>
+
+  <script>
+    function startDownload() {
+      var progressBar = document.getElementById("progress-bar-inner");
+
+      // Initialize progress bar
+      progressBar.style.width = "0";
+      progressBar.style.backgroundColor = "#4caf50"; // Initial color
+
+      // Set interval to increase progress
+      var interval = setInterval(function() {
+        var currentWidth = parseInt(progressBar.style.width, 10);
+        
+        // Increase progress by 10
+        progressBar.style.width = (currentWidth + 10) + "%";
+
+        // Change color every three seconds
+        if (currentWidth % 30 === 0) {
+          changeColor();
+        }
+
+        // Stop when progress reaches 100%
+        if (currentWidth >= 100) {
+          clearInterval(interval);
+        }
+      }, 1000);
+    }
+
+    function changeColor() {
+      var progressBar = document.getElementById("progress-bar-inner");
+      var currentColor = progressBar.style.backgroundColor;
+
+      // Change color based on the current color
+      if (currentColor === "rgb(76, 175, 80)") {
+        progressBar.style.backgroundColor = "#2196f3"; // Change to blue
+      } else {
+        progressBar.style.backgroundColor = "#4caf50"; // Change to green
+      }
+    }
+  </script>
+
+</body>
+</html>
+
+
+
+Q2)  

@@ -1,0 +1,100 @@
+Q1) Create a container add row inside it and add 3 columns inside row using
+BootStrap.
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <title>Bootstrap Container with Columns</title>
+</head>
+<body>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <p>Column 1</p>
+    </div>
+    <div class="col-sm">
+      <p>Column 2</p>
+    </div>
+    <div class="col-sm">
+      <p>Column 3</p>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+
+
+
+Q2) 1. Model the following system as a document database.
+Consider a database of newspaper, publisher, and city.
+Different publisher publishes various newspapers in different cities
+2. Assume appropriate attributes and collections as per the query
+requirements. [3]
+3. Insert at least 5 documents in each collection.
+[3]
+4. Answer the following Queries.
+a. List all newspapers available “NASHIK” city
+[3]
+b. List all the newspaper of “Marathi” language
+[3]
+c. Count no. of publishers of “Gujrat” state
+[4]
+d. Write a cursor to show newspapers with highest sale in Maharashtra
+State
+
+
+// Media Collection
+// Media Collection
+[
+  {
+    "_id": ObjectId("1"),
+    "type": "newspaper",
+    "name": "Times of Nashik",
+    "language": "English",
+    "sale": 120000,
+    "publisher": {
+      "_id": ObjectId("101"),
+      "name": "Publisher Name",
+      "state": "State"
+    },
+    "city": {
+      "_id": ObjectId("201"),
+      "name": "City Name",
+      "state": "State"
+    }
+  },
+  // ... 4 more documents
+]
+
+> db.media.find({"type": "newspaper", "city.name": "Nashik"})
+> db.media.find({"type": "newspaper", "language": "Marathi"})
+> db.media.count({"publisher.state": "Gujarat"})
+> cursor = db.media.find({"type": "newspaper", "city.state": "Maharashtra"}).sort({"sale": -1})
+while (cursor.hasNext()) {
+  printjson(cursor.next());
+}
+
+//or answer
+
+a)db.property.find({rate:{$lt:100000}})
+b)db.property.find().sort({area:-1})
+c)db.property.find({area:"nashik"})
+d)db.property.find({name:"Mr.patil"})
+
+
+
+
+> 

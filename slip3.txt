@@ -1,0 +1,112 @@
+Q1) Write a bootstrap application to display thumbnails of the images.
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <title>Image Thumbnails</title>
+</head>
+<body>
+
+<div class="container">
+  <h2>Image Thumbnails</h2>
+  <div class="row">
+
+    <!-- Replace 'image1.jpg', 'image2.jpg', etc., with your actual image filenames -->
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <img src="image1.jpg" alt="Image 1">
+        <div class="caption">
+          <h3>Image 1</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="thumbnail">
+        <img src="image2.jpg" alt="Image 2">
+        <div class="caption">
+          <h3>Image 2</h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add more thumbnail sections for additional images -->
+
+  </div>
+</div>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+
+
+Q2)  1. Model the following system as a document database. Consider
+employee and department’s information.
+2. Assume appropriate attributes and collections as per the query
+requirements.
+[3]
+3. Insert at least 5 documents in each collection.
+[3]
+4. Answer the following Queries.
+a. Display name of employee who has highest salary
+[3]
+b. Display biggest department with max. no. of employees
+[3]
+c. Write a cursor which shows department wise employee
+information
+[4]
+d. List all the employees who work in Sales dept and salary > 50000
+
+
+// Employees Collection
+[
+  {
+    "_id": ObjectId("1"),
+    "name": "John Doe",
+    "department_id": ObjectId("101"),
+    "salary": 75000
+  },
+  // ... 4 more documents
+]
+
+// Departments Collection
+[
+  {
+    "_id": ObjectId("101"),
+    "name": "Sales",
+    "employees": [
+      {
+        "_id": ObjectId("1"),
+        "name": "John Doe",
+        "salary": 75000
+      },
+      // ... additional employee details
+    ]
+  },
+  // ... 4 more documents
+]
+
+
+> db.employees.find().sort({"salary": -1}).limit(1)
+> db.departments.find().sort({"employees": -1}).limit(1)
+> cursor = db.departments.find()
+while (cursor.hasNext()) {
+  printjson(cursor.next());
+}
+> db.employees.find({"department_id": ObjectId("101"), "salary": {"$gt": 50000}})
+
+//or answer
+a)db.company.find().sort({salary:-1}).limit(1)
+b)db.company.find().sort({no_of_employee:-1}).limit(1)
+c)db.company.find({department:"sales",salary:{$gt:6000}})
+

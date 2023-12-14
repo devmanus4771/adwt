@@ -1,0 +1,170 @@
+Q1) Create a web page being rendered in the browser consists of many things -
+logo, informative text, pictures, hyperlinks, navigational structure and table.
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sample Web Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+    }
+
+    nav {
+      margin-bottom: 20px;
+    }
+
+    nav a {
+      margin-right: 15px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="logo.png" alt="Company Logo">
+  <h1>Welcome to Our Website</h1>
+</header>
+
+<nav>
+  <a href="#home">Home</a>
+  <a href="#about">About Us</a>
+  <a href="#services">Services</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<section>
+  <h2>About Us</h2>
+  <p>This is some informative text about our company. We provide excellent services...</p>
+</section>
+
+<section>
+  <h2>Our Services</h2>
+  <ul>
+    <li>Service 1</li>
+    <li>Service 2</li>
+    <li>Service 3</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Gallery</h2>
+  <img src="image1.jpg" alt="Image 1">
+  <img src="image2.jpg" alt="Image 2">
+</section>
+
+<section>
+  <h2>Contact Us</h2>
+  <p>For inquiries, please contact us at <a href="mailto:info@example.com">info@example.com</a></p>
+</section>
+
+<section>
+  <h2>Our Team</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Position</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>John Doe</td>
+        <td>CEO</td>
+      </tr>
+      <tr>
+        <td>Jane Smith</td>
+        <td>CTO</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<footer>
+  <p>&copy; 2023 Our Company. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
+
+
+Q2) 
+
+
+// Customers Collection
+[
+  {
+    "_id": ObjectId("1"),
+    "name": "John Doe",
+    "policies": [
+      {
+        "policy_id": ObjectId("101"),
+        "type": "Komal Jeevan",
+        "premium_amount": 6000
+      },
+      // ... 4 more policies
+    ]
+  },
+  // ... 4 more documents
+]
+
+// Policies Collection
+[
+  {
+    "_id": ObjectId("101"),
+    "name": "Komal Jeevan",
+    "company": "Insurance Ltd."
+  },
+  // ... 4 more documents
+]
+
+> db.customers.find({"policies.type": "Komal Jeevan"})
+
+> db.customers.aggregate([
+  { $unwind: "$policies" },
+  { $group: { _id: null, avgPremium: { $avg: "$policies.premium_amount" } } }
+])
+
+> db.customers.update(
+  {"policies.type": "Monthly"},
+  { $mul: { "policies.$.premium_amount": 1.05 } },
+  { multi: true }
+)
+
+> db.customers.find({"policies.type": "half yearly"}).count()
+
+//or answer
+a)db.policy.find({policy_name:"komal_jeevan"})
+b)
+c)db.policy.find({policy_type:"montly"},{$sin:{p_amount:5}})
+d)db.policy.find({policy_type:"half_yearly"}).count()
+

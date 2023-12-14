@@ -1,0 +1,145 @@
+Q1)  Write a HTML code which will divide web page in three frames. First frame
+should consists of company name as heading. Second frame should consists
+of name of departments with hyperlink. Once click on any department, it
+should display information of that department in third frame.
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Three-Panel Layout</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    #companyName {
+      background-color: #3498db;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      flex: 0 0 20%;
+      overflow: auto;
+    }
+
+    #departments {
+      flex: 0 0 20%;
+      padding: 10px;
+      overflow: auto;
+    }
+
+    #departmentInfo {
+      flex: 1;
+      padding: 10px;
+      overflow: auto;
+    }
+
+    a {
+      display: block;
+      margin-bottom: 5px;
+      color: #333;
+      text-decoration: none;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    a:hover {
+      background-color: #ecf0f1;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="companyName">
+    <h1>Company Name</h1>
+  </div>
+
+  <div id="departments">
+    <a href="#" onclick="showDepartmentInfo('HR')">HR Department</a>
+    <a href="#" onclick="showDepartmentInfo('IT')">IT Department</a>
+    <a href="#" onclick="showDepartmentInfo('Sales')">Sales Department</a>
+    <!-- Add more departments as needed -->
+  </div>
+
+  <div id="departmentInfo">
+    <p>Select a department to view information.</p>
+  </div>
+
+  <script>
+    function showDepartmentInfo(department) {
+      document.getElementById('departmentInfo').innerHTML = `<p>Information for ${department} department.</p>`;
+    }
+  </script>
+
+</body>
+</html>
+
+
+Q2) 
+
+// Products Collection
+[
+  { "_id": ObjectId("1"), "name": "Laptop", "price": 800.00 },
+  // ... 4 more documents
+]
+
+// Customers Collection
+[
+  { "_id": ObjectId("101"), "name": "Mr. Rajiv", "email": "rajiv@example.com" },
+  // ... 4 more documents
+]
+
+// Orders Collection
+[
+  {
+    "_id": ObjectId("201"),
+    "customer_id": ObjectId("101"),
+    "products": [
+      { "product_id": ObjectId("1"), "quantity": 2 },
+      // ... additional product details
+    ],
+    "total_value": 1600.00,
+    "processed": true
+  },
+  // ... 4 more documents
+]
+
+// Invoices Collection
+[
+  { "_id": ObjectId("301"), "order_id": ObjectId("201"), "customer_id": ObjectId("101"), "total_amount": 1600.00 },
+  // ... 4 more documents
+]
+
+
+
+>  db.products.find({})
+
+> db.orders.find({ "total_value": { $gt: 20000 } })
+
+> db.orders.find({ "processed": false })
+
+> db.orders.aggregate([
+  { $match: { "customer_id": ObjectId("101") } },
+  {
+    $lookup: {
+      from: "invoices",
+      localField: "_id",
+      foreignField: "order_id",
+      as: "invoice"
+    }
+  }
+])
+
+
+//or answer
+db.sales.insert([{pname:"biscuit",cname:"prasad",pvalue:50000,invoice:"generated",invoice_for:"mr.rajiv"}])
+q1=db.sales.find().pretty()
+q2= db.sales.find({pvalue:{$gt:20000}})
+q3= db.sales.find({invoice:"non_generated"})
+q4= db.sales.find({invoice_for:"mr.rajiv"})
+
