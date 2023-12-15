@@ -89,10 +89,10 @@ while (cursor.hasNext()) {
 
 //or answer
 
-a)db.property.find({rate:{$lt:100000}})
-b)db.property.find().sort({area:-1})
-c)db.property.find({area:"nashik"})
-d)db.property.find({name:"Mr.patil"})
+a)db.newspaper.find({"city":"nashik"})
+b)db.newspaper.find({"lan":"marathi"})
+c)db.newspaper.find({"publisher_city":"gujrat"}).count()
+
 
 
 
